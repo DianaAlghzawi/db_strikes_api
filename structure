@@ -1,0 +1,20 @@
+project/
+├── controllers/
+│   ├── authors.py
+│   └── contents.py
+├── models/
+│   ├── authors.py
+│   └── contents.py
+├── repository/
+│   ├── authors.py
+│   ├── contents.py
+│   ├── strikes/
+│   │   ├── add_author_to_content.py
+│   │   ├── delete_author_from_content.py
+│   │   └── remove_links_from_body.py
+├── infra/
+│   ├── db/
+│   │   ├── schema.py
+│   │   └── engine.py
+├── main.py
+└── ...

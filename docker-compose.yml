@@ -1,0 +1,39 @@
+---
+services:
+  db_strikes-api-base:
+    image: db_strikes-api-image
+    build:
+      context: .
+    container_name: db_strikes-api-base
+    environment:
+      - VIRTUAL_HOST=db_strikes-api-app.docker
+      - POSTGRES_HOST=db_strikes-postgres
+      - POSTGRES_DB=db_strikes
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_PORT=5432
+    volumes:
+      - ${PWD}:/app
+    command: ["echo", "I only exist to be extended so I'll just exit, thanks"]
+
+  db_strikes-api:
+    extends: db_strikes-api-base
+    container_name: db_strikes-api-app
+    depends_on:
+     - db_strikes-postgres
+    ports:
+      - "5000:8000"
+    command: ["uvicorn", "--reload", "--workers", "1", "--host", "0.0.0.0", "--port", "8000", "app:app"]
+
+  db_strikes-postgres:
+    container_name: db_strikes-postgres
+    image: postgres:14.2
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      VIRTUAL_HOST: db_strikes-postgres.docker
+      POSTGRES_DB: db_strikes
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_PORT: '5432'
+    ports:
+      - "5788:5432"
