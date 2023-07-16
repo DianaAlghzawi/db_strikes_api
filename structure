@@ -1,20 +1,25 @@
-project/
 ├── controllers/
 │   ├── authors.py
 │   └── contents.py
+│   └── contents_Authors_Association.py
 ├── models/
 │   ├── authors.py
 │   └── contents.py
 ├── repository/
 │   ├── authors.py
 │   ├── contents.py
-│   ├── strikes/
-│   │   ├── add_author_to_content.py
-│   │   ├── delete_author_from_content.py
-│   │   └── remove_links_from_body.py
+│   └── contents_Authors_Association.py
 ├── infra/
 │   ├── db/
 │   │   ├── schema.py
 │   │   └── engine.py
+├── services/
+│   ├── authors.py
+│   ├── contents.py
+│   ├── association_manager.py
+│   └── strikes/
+│       ├── add_author_to_content.py
+│       ├── delete_author_from_content.py
+│       └── remove_links_from_body.py
 ├── main.py
 └── ...

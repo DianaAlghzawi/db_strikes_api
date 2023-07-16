@@ -3,7 +3,8 @@ from fastapi.responses import JSONResponse
 
 from db_strikes.controllers.authors import authors_router
 from db_strikes.controllers.contents import contents_router
-from db_strikes.controllers.contents_authors_associations import contents_authors_router
+from db_strikes.controllers.contents_authors_associations import \
+    contents_authors_router
 from db_strikes.exception import ModelNotFoundException
 
 app = FastAPI()
