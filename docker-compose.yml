@@ -14,9 +14,6 @@ services:
       - POSTGRES_PORT=5432
     volumes:
       - ${PWD}:/app
-      - ./add_author_to_content.py:/app/add_author_to_content.py
-      - ./delete_author_from_content.py:/app/delete_author_from_content.py
-      - ./remove_links_from_body.py:/app/remove_links_from_body.py
     command: ["sh", "-c", "python delete_author_from_content.py && python add_author_to_content.py && python remove_links_from_body.py && uvicorn --reload --workers 1 --host 0.0.0.0 --port 8000 app:app"]
 
   db_strikes-api:

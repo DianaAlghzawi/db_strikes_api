@@ -29,4 +29,4 @@ input_file = open('strikes_input/add_author_to_content.csv')
 for ids in input_file.readlines():
     author_id, content_id = ids.split(',')
     obj = AddAuthorToContent(content_id[:-1])
-    print(obj.delpoy_changes(author_id))
+    print(obj.delpoy_changes(author_id), '\n')
