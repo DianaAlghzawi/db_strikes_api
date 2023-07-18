@@ -1,10 +1,10 @@
 from datetime import datetime
 
 import sqlalchemy as sa
-from sqlalchemy import (Column, DateTime, ForeignKey, PrimaryKeyConstraint,
-                        String, Table, Text, UniqueConstraint, text)
+from sqlalchemy import (ARRAY, Column, DateTime, ForeignKey,
+                        PrimaryKeyConstraint, String, Table, Text,
+                        UniqueConstraint, text)
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship
 
 from db_strikes.infra.db.engine import metadata
 
@@ -29,6 +29,7 @@ contents = Table(
     Column('id', UUID(as_uuid=True), nullable=False, server_default=new_uuid),
     Column('body', Text, nullable=False),
     Column('status', String, nullable=False),
+    Column('author_id', ARRAY(UUID)),
     Column('created_at', DateTime, nullable=False, default=now, server_default=sa.func.now()),
     Column('updated_at', DateTime, nullable=True, onupdate=now, default=now, server_default=sa.func.now()),
     PrimaryKeyConstraint('id', 'id', name='contents_pk'),
@@ -42,18 +43,4 @@ authors = Table(
     Column('created_at', DateTime, nullable=False, default=now, server_default=sa.func.now()),
     Column('updated_at', DateTime, nullable=True, onupdate=now, default=now, server_default=sa.func.now()),
     PrimaryKeyConstraint('id', 'id', name='authors_pk'),
-)
-
-""" Define the relationship in the authors table. """
-authors_contents_relationship = relationship(
-    'contents',
-    secondary=contents_authors_association,
-    back_populates='authors'
-)
-
-""" Define the relationship in the contents table. """
-contents_authors_relationship = relationship(
-    'authors',
-    secondary=contents_authors_association,
-    back_populates='contents'
 )

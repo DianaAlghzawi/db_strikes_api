@@ -1,8 +1,8 @@
-"""create table db-strikes
+"""create table db_strikes
 
-Revision ID: 10ee2d9d6744
-Revises: cbd189e03295
-Create Date: 2023-07-15 14:25:41.371378
+Revision ID: 4500a748df98
+Revises: 
+Create Date: 2023-07-18 14:52:35.117096
 
 """
 import sqlalchemy as sa
@@ -11,8 +11,8 @@ from sqlalchemy.dialects import postgresql
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision = '10ee2d9d6744'
-down_revision = 'cbd189e03295'
+revision = '4500a748df98'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -30,6 +30,7 @@ def upgrade() -> None:
                     sa.Column('id', postgresql.UUID(as_uuid=True), server_default=sa.text('uuid_generate_v4()'), nullable=False),
                     sa.Column('body', sa.Text(), nullable=False),
                     sa.Column('status', sa.String(), nullable=False),
+                    sa.Column('author_id', sa.ARRAY(postgresql.UUID()), nullable=True),
                     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
                     sa.PrimaryKeyConstraint('id', name='contents_pk')

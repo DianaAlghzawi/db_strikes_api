@@ -17,5 +17,5 @@ class ContentAuthorAssociationManager():
     def get_content(self) -> contents.Content:
         return contents.get_content_by_id(self.content_id)
 
-    def update_content(self, content):
+    def update_content(self, content) -> contents.Content:
         return contents.update_content(self.content_id, content)

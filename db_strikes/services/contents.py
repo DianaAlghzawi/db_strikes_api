@@ -7,21 +7,21 @@ from db_strikes.repositories import contents
 from db_strikes.repositories.contents import Content
 
 
-def new_content(body: Text, status: str) -> Content:
+def new(body: Text, status: str, author_id: list[UUID]) -> Content:
     with engine.begin() as conn:
-        return contents.new(conn, body, status)
+        return contents.new(conn, body, status, author_id)
 
 
-def get_content_by_id(id: UUID) -> Content:
+def get_by_id(id: UUID) -> Content:
     with engine.connect() as conn:
         return contents.get_by_id(conn, id)
 
 
-def delete_content(id: UUID) -> None:
+def delete(id: UUID) -> None:
     with engine.begin() as conn:
         return contents.delete(conn, id)
 
 
-def update_content(id: UUID, content: PatchContents) -> Content:
+def update(id: UUID, content: PatchContents) -> Content:
     with engine.begin() as conn:
         return contents.update(conn, id, content)
