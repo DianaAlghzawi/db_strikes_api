@@ -16,6 +16,7 @@ class DeleteAuthorFromContent(StrikesBase):
         return status.get_status()
 
     def delpoy_changes(self, author_id: UUID) -> str:
+        """ Deploys changes by deleting the specified author from content. """
         self.author_id = author_id
         return self.delete_author_from_content()
 

@@ -1,13 +1,12 @@
 import re
 
-from db_strikes.repositories.contents import Content
 from db_strikes.services import contents
 from status import Status
 from strikes_commands.strikes_base import StrikesBase
 
 
 class RemoveLinksFromBody(StrikesBase):
-    def remove_links_from_body(self) -> Content:
+    def remove_links_from_body(self) -> str:
         try:
             content = contents.get_by_id(self.content_id)
             regex_equation = r'https?://(\w+/)+\w*\s'
@@ -19,7 +18,7 @@ class RemoveLinksFromBody(StrikesBase):
 
         return status.get_status()
 
-    def delpoy_changes(self):
+    def delpoy_changes(self) -> str:
         return self.remove_links_from_body()
 
 

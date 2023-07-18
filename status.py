@@ -2,7 +2,7 @@ from uuid import UUID
 
 
 class Status:
-    def __init__(self, status: str, content_id: UUID, message: str):
+    def __init__(self, status: str, content_id: UUID, message: any):
         self.status = status
         self.content_id = content_id
         self.message = message
