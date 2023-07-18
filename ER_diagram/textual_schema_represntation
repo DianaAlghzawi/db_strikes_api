@@ -34,3 +34,8 @@
                   | updated_at      |
                   +-----------------+
 
+The diagram illustrates three tables: contents, contents_authors_association, and authors.
+
+The contents table has columns for id, body, status, author_id, created_at, and updated_at.
+The contents_authors_association table serves as the association table between contents and authors. It has columns for id (PK), content_id (FK to contents.id), author_id (FK to authors.id), created_at, and updated_at.
+The authors table has columns for id, bio, created_at, and updated_at.

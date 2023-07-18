@@ -12,5 +12,5 @@ class StrikesBase:
     def get_content(self) -> contents.Content:
         return contents.get_by_id(self.content_id)
 
-    def delpoy_changes(self):
+    def delpoy_changes(self) -> None:
         pass

@@ -7,5 +7,5 @@ class Status:
         self.content_id = content_id
         self.message = message
 
-    def get_status(self):
+    def get_status(self) -> str:
         return f'{self.status}' + f'{self.content_id}' + f'{self.message}'

@@ -1,11 +1,11 @@
 from db_strikes.repositories import contents_authors_associations
-from db_strikes.repositories.contents_authors_associations import ContentAuthor
 from status import Status
 from strikes_commands.strikes_base import StrikesBase
+from uuid import UUID
 
 
 class DeleteAuthorFromContent(StrikesBase):
-    def delete_author_from_content(self) -> ContentAuthor:
+    def delete_author_from_content(self) -> str:
         """ Delete author from the content """
         try:
             contents_authors_associations.delete_author_from_content(self.conn, self.content_id, self.author_id)
@@ -15,7 +15,7 @@ class DeleteAuthorFromContent(StrikesBase):
 
         return status.get_status()
 
-    def delpoy_changes(self, author_id):
+    def delpoy_changes(self, author_id: UUID) -> str:
         self.author_id = author_id
         return self.delete_author_from_content()
 
